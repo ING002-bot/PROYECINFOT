@@ -1,0 +1,68 @@
+/* estilos-formularios.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.form-container {
+  max-width: 400px;
+  margin: 50px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(58, 46, 219, 0.2);
+}
+
+h2 {
+  text-align: center;
+  color: #3a2edb;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333333;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #25D366;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #ff3b6c;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #3a2edb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #ff3b6c;
+}

@@ -11,8 +11,8 @@
         <h1>Bienvenidos a la mejor tienda</h1>
         <nav>
             <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="servicio.html">Servicio Tecnico</a></li>
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="servicio.php">Servicio Tecnico</a></li>
 
             </ul>
         </nav>

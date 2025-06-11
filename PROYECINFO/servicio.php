@@ -38,7 +38,7 @@
                     <h3>Impresoras</h3>
                     <img src="./IMAGES/pimp.jpg" alt="PC Gamer">
                     <p>El mantenimiento preventivo se lleva a cabo regularmente para evitar futuras averías. En impresoras, esto incluye la limpieza de cabezales, rodillos y bandejas, revisión del sistema de alimentación de papel, alineación de cartuchos, y verificación del firmware. También se inspeccionan los conectores y se asegura la correcta instalación de los controladores. Esta rutina prolonga la vida útil del equipo y mejora la calidad de impresión</p>
-                    <p class="price">S/ 30,00</p>
+                    <p class="price">S/ 35,00</p>
                 </div>
             </div>
             

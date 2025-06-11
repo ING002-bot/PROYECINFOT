@@ -14,7 +14,6 @@
       <a href="venta.php">Equipos</a>
       <a href="servicio.php">Soporte</a>
       <a href="nosotros.php">Contacto</a>
-      <a class="whatsapp-contact" href="https://wa.me/51923213425">923 213 425</a>
       <a class="registro-sesion" href="#" onclick="abrirModal('registro')">Registrar</a>
       <a class="registro-sesion" href="#" onclick="abrirModal('inicio')">Iniciar Sesión</a>
     </nav>
@@ -37,40 +36,45 @@
   </section>
 
   <!-- MODAL REGISTRO -->
-  <div class="modal" id="modal-registro">
-    <div class="modal-contenido">
-      <span class="cerrar" onclick="cerrarModal('registro')">&times;</span>
-      <h2>Crear Cuenta</h2>
-      <form action="procesar_registro.php" method="POST">
-        <input type="text" name="nombre" placeholder="Nombre completo" required>
-        <input type="email" name="email" placeholder="Correo electrónico" required>
-        <input type="text" name="usuario" placeholder="Nombre de usuario" required>
-        <input type="password" name="password" placeholder="Contraseña" required>
-        <button type="submit">Registrarse</button>
-      </form>
-      <p class="enlace-modal">
-        ¿Ya tienes cuenta?
-        <a href="#" onclick="cambiarModal('registro', 'inicio')">Iniciar sesión</a>
-      </p>
-    </div>
+<div class="modal" id="modal-registro">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal('registro')">&times;</span>
+    <h2>Crear Cuenta</h2>
+    <form action="config/registro.php" method="POST">
+      <input type="text" name="nombre" placeholder="Nombre" required>
+      <input type="text" name="apellido" placeholder="Apellido" required>
+      <input type="email" name="correo" placeholder="Correo electrónico" required>
+      <input type="text" name="telefono" placeholder="Teléfono" required>
+      <input type="text" name="direccion" placeholder="Dirección" required>
+      <input type="password" name="password" placeholder="Contraseña" required>
+      <button type="submit">Registrarse</button>
+    </form>
+    <p class="enlace-modal">
+      ¿Ya tienes cuenta?
+      <a href="#" onclick="cambiarModal('registro', 'inicio')">Iniciar sesión</a>
+    </p>
   </div>
+</div>
 
-  <!-- MODAL INICIO SESIÓN -->
-  <div class="modal" id="modal-inicio">
-    <div class="modal-contenido">
-      <span class="cerrar" onclick="cerrarModal('inicio')">&times;</span>
-      <h2>Iniciar Sesión</h2>
-      <form action="procesar_login.php" method="POST">
-        <input type="text" name="usuario" placeholder="Nombre de usuario o correo" required>
-        <input type="password" name="password" placeholder="Contraseña" required>
-        <button type="submit">Entrar</button>
-      </form>
-      <p class="enlace-modal">
-        ¿No tienes cuenta?
-        <a href="#" onclick="cambiarModal('inicio', 'registro')">Registrarse</a>
-      </p>
-    </div>
+
+
+<!-- MODAL INICIO SESIÓN -->
+<div class="modal" id="modal-inicio">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal('inicio')">&times;</span>
+    <h2>Iniciar Sesión</h2>
+    <form action="./config/iniciar_sesion.php" method="POST">
+      <input type="email" name="correo" placeholder="Correo electrónico" required>
+      <input type="password" name="password" placeholder="Contraseña" required>
+      <button type="submit">Entrar</button>
+    </form>
+    <p class="enlace-modal">
+      ¿No tienes cuenta?
+      <a href="#" onclick="cambiarModal('inicio', 'registro')">Registrarse</a>
+    </p>
   </div>
+</div>
+
 
   <!-- Script de modales -->
   <script src="./JS/modal.js"></script>

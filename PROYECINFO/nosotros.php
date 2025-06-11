@@ -24,7 +24,7 @@
         <h1>Servicio Técnico</h1>
         <nav>
             <ul>
-                <li><a href="index.php">Inicio</a></li>
+                <li><a href="usuario.php">Inicio</a></li>
             </ul>
         </nav>
     </header>

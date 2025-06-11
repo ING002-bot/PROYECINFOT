@@ -24,10 +24,8 @@
                     <i class="fas fa-user fa-fw"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Configuración</a></li>
-                    <li><a class="dropdown-item" href="#">Registro de Actividad</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
+                    <li><a class="dropdown-item"  href="cerrarsesion.php">Cerrar Sesión</a></li>
                 </ul>
             </li>
         </ul>
@@ -84,6 +82,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-envelope"></i></div>
                             Mensajes de Soporte
                         </a>
+
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -111,9 +110,9 @@
                     <div class="d-flex align-items-center justify-content-between small">
                         <div class="text-muted">Derechos reservados &copy; INFOTEC 2025</div>
                         <div>
-                            <a href="#">Política de Privacidad</a>
+                            <a href="./politicas.php">Política de Privacidad</a>
                             &middot;
-                            <a href="#">Términos y Condiciones</a>
+                            <a href="./terminosycondi.php">Términos y Condiciones</a>
                         </div>
                     </div>
                 </div>

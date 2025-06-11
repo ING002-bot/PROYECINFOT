@@ -14,6 +14,7 @@
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="servicio.php">Servicio Tecnico</a></li>
                 <li><a href="formulario_venta.php">Comprar</a></li>
+                <li><a href="pago.php">Pago</a></li>
 
             </ul>
         </nav>
@@ -24,10 +25,10 @@
             <h2>PCs</h2>
             <div class="group">
                 <div class="product">
-                    <img src="./IMAGES/pcg1.webp" alt="PC Gamer">
-                    <p>Computadora PC GAMER RYZEN 7-5700G RAM 16GB DISCO 1TB+SSD 
-                        480GB MONITOR 27” FHD</p>
-                    <p class="price">S/ 3,500</p>
+                    <img src="./IMAGES/pcg2.webp" alt="PC Gamer">
+                    <p>Computadora PC GAMER Core I7-8th Ram 16GB DISCO 1TB+SSD 480GB 
+                        RX 580 8GB M24</p>
+                    <p class="price">S/ 4,500</p>
                 </div>
                 <div class="product">
                     <img src="./IMAGES/pcg2.webp" alt="PC Gamer">

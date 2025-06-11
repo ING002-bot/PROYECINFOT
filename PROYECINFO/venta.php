@@ -13,6 +13,7 @@
             <ul>
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="servicio.php">Servicio Tecnico</a></li>
+                <li><a href="formulario_venta.php">Comprar</a></li>
 
             </ul>
         </nav>

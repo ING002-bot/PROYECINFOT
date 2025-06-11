@@ -9,7 +9,7 @@
 </head>
 <body>
   <header>
-    <img src="./IMAGES/logo.jpeg" alt="Infotec Logo">
+    <img src="IMAGES/logo.png" alt="Infotec Logo">
     <nav>
       <a href="venta.php">Equipos</a>
       <a href="servicio.php">Soporte</a>
@@ -34,7 +34,6 @@
       Especialistas en soporte técnico en todas las marcas de puntos de ventas de todo tipo de negocios. Brindamos atención personalizada y soluciones efectivas para que tu sistema funcione siempre al 100%.
     </p>
   </section>
-
   <!-- MODAL REGISTRO -->
 <div class="modal" id="modal-registro">
   <div class="modal-contenido">
@@ -56,8 +55,6 @@
   </div>
 </div>
 
-
-
 <!-- MODAL INICIO SESIÓN -->
 <div class="modal" id="modal-inicio">
   <div class="modal-contenido">
@@ -75,8 +72,28 @@
   </div>
 </div>
 
+<!-- Script de modales -->
+<script src="./JS/modal.js"></script>
+<script>
+  function abrirModal(id) {
+    const modal = document.getElementById('modal-' + id);
+    if (modal) modal.style.display = 'flex';
+  }
 
-  <!-- Script de modales -->
-  <script src="./JS/modal.js"></script>
+  function cerrarModal(id) {
+    const modal = document.getElementById('modal-' + id);
+    if (modal) modal.style.display = 'none';
+  }
+
+  // ✅ Detectar si la URL contiene ?abrirLogin=1 y abrir el modal de inicio
+  document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("abrirLogin") === "1") {
+      abrirModal('inicio');
+    }
+  });
+</script>
+
+
 </body>
 </html>

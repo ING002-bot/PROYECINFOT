@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Formulario de Venta</title>
-    <link rel="stylesheet" href="./CSS/venta.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Venta - INFOTEC</title>
+  <link rel="stylesheet" href="CSS/formulario.css">
 </head>
 <body>
-    <h1>Formulario de Venta</h1>
-    <?php
-        $desc = isset($_GET['desc']) ? htmlspecialchars($_GET['desc']) : '';
-        $price = isset($_GET['price']) ? htmlspecialchars($_GET['price']) : '';
-    ?>
-    <form action="procesar_venta.php" method="POST">
-        <label for="producto">Producto:</label>
-        <input type="text" id="producto" name="producto" value="<?php echo $desc; ?>" readonly><br><br>
+  <div class="form-container">
+    <h2>Formulario de Venta</h2>
+    <form action="/procesar-venta" method="POST">
+      <label for="cliente">Nombre del cliente:</label>
+      <input type="text" id="cliente" name="cliente" required>
 
-        <label for="precio">Precio (S/):</label>
-        <input type="text" id="precio" name="precio" value="<?php echo $price; ?>" readonly><br><br>
+      <label for="producto">Producto:</label>
+      <input type="text" id="producto" name="producto" required>
 
-        <label for="cliente">Nombre del Cliente:</label>
-        <input type="text" id="cliente" name="cliente" required><br><br>
+      <label for="cantidad">Cantidad:</label>
+      <input type="number" id="cantidad" name="cantidad" min="1" required>
 
-        <label for="cantidad">Cantidad:</label>
-        <input type="number" id="cantidad" name="cantidad" min="1" required><br><br>
+      <label for="metodo">Método de pago:</label>
+      <select id="metodo" name="metodo" required>
+        <option value="">-- Seleccionar --</option>
+        <option value="efectivo">Efectivo</option>
+        <option value="tarjeta">Tarjeta</option>
+        <option value="transferencia">Transferencia</option>
+      </select>
 
-        <input type="submit" value="Realizar Compra">
+      <label for="direccion">Dirección de envío:</label>
+      <textarea id="direccion" name="direccion" rows="3" required></textarea>
+
+      <button type="submit">Realizar compra</button>
     </form>
+  </div>
 </body>
 </html>

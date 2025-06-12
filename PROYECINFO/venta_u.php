@@ -1,5 +1,10 @@
 <?php
-session_start();
+session_start(); // Inicia la sesión para usar $_SESSION eliminar la lógica repetida :contentReference[oaicite:1]{index=1}
+
+/*
+ Determina si el usuario está logueado mediante la existencia de una clave 'correo' en sesión
+ útil para condicionar ciertos comportamientos en el frontend
+*/
 $usuario_logueado = isset($_SESSION['correo']);
 ?>
 

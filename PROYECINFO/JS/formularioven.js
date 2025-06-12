@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const totalGeneral = document.getElementById("totalGeneral");
   const btnAgregar = document.getElementById("agregarProducto");
 
+  /**
+   * Calcula y actualiza los subtotales de cada fila y el total general.
+   * Se llama cuando cambia cantidad o precio, o al eliminar/agregar filas.
+   */
   function actualizarTotal() {
     let total = 0;
     tabla.querySelectorAll("tr").forEach(row => {
@@ -15,6 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
     totalGeneral.textContent = total.toFixed(2);
   }
 
+  /**
+   * Crea una nueva fila en la tabla de productos con listeners:
+   * – recalcula total al cambiar cantidad o precio.
+   * – elimina la fila y actualiza total al presionar "X".
+   */
   function agregarFila() {
     const fila = document.createElement("tr");
     fila.innerHTML = `
@@ -26,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     tabla.appendChild(fila);
 
+    // Listeners para recalcular el total dinámicamente
     fila.querySelector(".cantidad").addEventListener("input", actualizarTotal);
     fila.querySelector(".precio").addEventListener("input", actualizarTotal);
     fila.querySelector(".eliminar").addEventListener("click", () => {
@@ -33,9 +43,12 @@ document.addEventListener("DOMContentLoaded", () => {
       actualizarTotal();
     });
 
-    actualizarTotal();
+    actualizarTotal(); // Actualiza total tras agregar fila
   }
 
+  // Listener para el botón de agregar nueva fila
   btnAgregar.addEventListener("click", agregarFila);
-  agregarFila(); // agrega una fila al inicio
+
+  // Agrega una fila vacía al cargar la página
+  agregarFila();
 });

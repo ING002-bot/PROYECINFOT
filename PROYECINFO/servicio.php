@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Infotec</title>
+    <title>Tienda Infotec - Servicio Técnico</title>
+    <!-- Estilos personalizados para la sección de servicio -->
     <link rel="stylesheet" href="./CSS/servicio.css">
 </head>
 <body>
+    <!-- Encabezado con logo y navegación -->
     <header>
-        <h1>Servicio Tecnico</h1>
+        <h1>Servicio Técnico</h1>
         <nav>
             <ul>
                 <li><a href="index.php">Inicio</a></li>
@@ -17,10 +19,13 @@
         </nav>
     </header>
 
+    <!-- Sección principal con los diferentes tipos de mantenimiento -->
     <main>
         <section id="maintenance">
+            <!-- Mantenimiento Preventivo -->
             <h2>Mantenimiento Preventivo</h2>
             <div class="group">
+                <!-- Opción para PCs -->
                 <div class="maintenance-p">
                     <h3>PCs</h3>
                     <img src="./IMAGES/ppc.jpg" alt="PC Gamer">
@@ -28,6 +33,7 @@
                     <p class="price">S/ 20,00</p>
                     <a href="config/redirigir_servicio.php" style="padding: 10px; background-color: #25D366; color: white; text-decoration: none;">Solicitar Servicio</a>
                 </div>
+                <!-- Opción para Laptops -->
                 <div class="maintenance-p">
                     <h3>Laptops</h3>
                     <img src="./IMAGES/plap.jpg" alt="Laptop">
@@ -35,6 +41,7 @@
                     <p class="price">S/ 25,00</p>
                     <a href="config/redirigir_servicio.php" style="padding: 10px; background-color: #25D366; color: white; text-decoration: none;">Solicitar Servicio</a>
                 </div>
+                <!-- Opción para Impresoras -->
                 <div class="maintenance-p">
                     <h3>Impresoras</h3>
                     <img src="./IMAGES/pimp.jpg" alt="Impresora">
@@ -44,8 +51,10 @@
                 </div>
             </div>
             
+            <!-- Mantenimiento Correctivo -->
             <h2>Mantenimiento Correctivo</h2>
             <div class="group">
+                <!-- PCs -->
                 <div class="maintenance-c">
                     <h3>PCs</h3>
                     <img src="./IMAGES/cpc.jpg" alt="PC Gamer">
@@ -53,6 +62,7 @@
                     <p class="price">S/ 40,00</p>
                     <a href="config/redirigir_servicio.php" style="padding: 10px; background-color: #25D366; color: white; text-decoration: none;">Solicitar Servicio</a>
                 </div>
+                <!-- Laptops -->
                 <div class="maintenance-c">
                     <h3>Laptops</h3>
                     <img src="./IMAGES/clap.jpg" alt="Laptop">
@@ -60,6 +70,7 @@
                     <p class="price">S/ 50,00</p>
                     <a href="config/redirigir_servicio.php" style="padding: 10px; background-color: #25D366; color: white; text-decoration: none;">Solicitar Servicio</a>
                 </div>
+                <!-- Impresoras -->
                 <div class="maintenance-c">
                     <h3>Impresoras</h3>
                     <img src="./IMAGES/cimp.jpg" alt="Impresora">
@@ -69,8 +80,10 @@
                 </div>
             </div>
 
+            <!-- Mantenimiento Predictivo -->
             <h2>Mantenimiento Predictivo</h2>
             <div class="group">
+                <!-- PCs -->
                 <div class="maintenance-pd">
                     <h3>PCs</h3>
                     <img src="./IMAGES/prpc.jpg" alt="PC Gamer">
@@ -78,6 +91,7 @@
                     <p class="price">S/ 50,00</p>
                     <a href="config/redirigir_servicio.php" style="padding: 10px; background-color: #25D366; color: white; text-decoration: none;">Solicitar Servicio</a>
                 </div>
+                <!-- Laptops -->
                 <div class="maintenance-pd">
                     <h3>Laptops</h3>
                     <img src="./IMAGES/prlap.jpg" alt="Laptop">
@@ -85,6 +99,7 @@
                     <p class="price">S/ 60,00</p>
                     <a href="config/redirigir_servicio.php" style="padding: 10px; background-color: #25D366; color: white; text-decoration: none;">Solicitar Servicio</a>
                 </div>
+                <!-- Impresoras -->
                 <div class="maintenance-pd">
                     <h3>Impresoras</h3>
                     <img src="./IMAGES/primp.jpg" alt="Impresora">
@@ -95,6 +110,8 @@
             </div>
         </section>
     </main>
+
+    <!-- Pie de página con derechos reservados -->
     <footer>
         <p>&copy; 2025 Tienda INFOTEC | Todos los derechos reservados</p>
     </footer>

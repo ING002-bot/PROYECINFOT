@@ -1,11 +1,12 @@
 <?php
 session_start();
 
+// Si no hay sesión de rol definida o no es 'admin', cerramos sesión y redirigimos a index.php
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    session_unset();
-    session_destroy();
-    header("Location: index.php");
-    exit();
+    session_unset();        // Eliminar todas las variables de sesión
+    session_destroy();      // Destruir la sesión
+    header("Location: index.php");  // Redirigir al inicio
+    exit();                 // Finalizar ejecución
 }
 ?>
 
@@ -18,17 +19,24 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     <meta name="description" content="Panel de control del sistema INFOTEC" />
     <meta name="author" content="INFOTEC" />
     <title>Panel de Control - INFOTEC</title>
+    <!-- Estilos para la tabla y el panel administrativo -->
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="CSS/admin.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Logo y toggle del sidebar -->
     <a class="navbar-brand ps-3" href="admin.php">INFOTEC</a>
-    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    <!-- Menú de usuario -->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"><i class="fas fa-user fa-fw"></i></a>
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown">
+                <i class="fas fa-user fa-fw"></i>
+            </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><hr class="dropdown-divider" /></li>
                 <li><a class="dropdown-item" href="cerrarsesion.php">Cerrar Sesión</a></li>
@@ -36,18 +44,21 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
         </li>
     </ul>
 </nav>
+<!-- Layout principal con sidebar -->
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
+                    <!-- Encabezado Menú Principal -->
                     <div class="sb-sidenav-menu-heading">Menú Principal</div>
                     <a class="nav-link" href="admin.php?page=dashboard">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Panel de Control
                     </a>
-
+                    <!-- Encabezado Gestión -->
                     <div class="sb-sidenav-menu-heading">Gestión</div>
+                    <!-- Vínculos a secciones administrativas -->
                     <a class="nav-link" href="admin.php?page=usuarios">
                         <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                         Usuarios Registrados
@@ -62,7 +73,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                     </a>
                     <a class="nav-link" href="admin.php?page=imagenes">
                         <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
-                        Imágenes de Productos
+                        Imágeness de Producto
                     </a>
                     <a class="nav-link" href="admin.php?page=compras">
                         <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
@@ -72,7 +83,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                         <div class="sb-nav-link-icon"><i class="fas fa-file-invoice"></i></div>
                         Boletas Electrónicas
                     </a>
-
+                    <!-- Encabezado Interacción -->
                     <div class="sb-sidenav-menu-heading">Interacción</div>
                     <a class="nav-link" href="admin.php?page=comentarios">
                         <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
@@ -88,16 +99,19 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                     </a>
                 </div>
             </div>
+            <!-- Pie de menú con información del usuario -->
             <div class="sb-sidenav-footer">
                 <div class="small">Conectado como:</div>
                 INFOTEC ADMIN
             </div>
         </nav>
     </div>
+    <!-- Contenido principal dinámico -->
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
                 <?php
+                    // Obtener el parámetro 'page' y cargar el archivo correspondiente si existe
                     $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
                     $path = 'admin_pages/' . $page . '.php';
                     if (file_exists($path)) {
@@ -108,6 +122,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                 ?>
             </div>
         </main>
+        <!-- Pie de página -->
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
                 <div class="d-flex align-items-center justify-content-between small">
@@ -122,6 +137,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
         </footer>
     </div>
 </div>
+<!-- Scripts de Bootstrap y funcionalidades del panel -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="js/panel.js"></script>
 </body>

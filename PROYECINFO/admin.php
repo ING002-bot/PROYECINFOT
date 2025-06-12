@@ -52,11 +52,11 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                         <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                         Usuarios Registrados
                     </a>
-                    <a class="nav-link" href="admin.php?page=productos">
+                    <a class="nav-link" href="producto.php?page=productos">
                         <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
                         Productos
                     </a>
-                    <a class="nav-link" href="admin.php?page=categorias">
+                    <a class="nav-link" href="categorias.php?page=categorias">
                         <div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
                         Categorías
                     </a>

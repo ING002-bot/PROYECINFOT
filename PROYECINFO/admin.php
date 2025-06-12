@@ -60,6 +60,8 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                 </div>';
             }
             ?>
+            
+
         </main>
     </div>
 

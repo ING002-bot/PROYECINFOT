@@ -2,67 +2,100 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Pago en línea</title>
-    <!-- Estilos personalizados para el formulario de pago -->
-    <link rel="stylesheet" href="./CSS/pago.css">
-    <!-- SDK de PayPal: ambiente sandbox (client-id=sb) y moneda USD -->
-    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Infotec</title>
+    <link rel="stylesheet" href="./CSS/servicio.css">
 </head>
 <body>
+    <header>
+        <h1>Servicio Tecnico</h1>
+        <nav>
+            <ul>
+                <li><a href="usuario.php">Atras</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Contenedor principal para el formulario de pago -->
-    <div class="form-wrapper">
-        <form action="procesar_pago.php" method="POST" id="pago-formulario">
-            <!-- Campo para nombre completo del comprador -->
-            <label for="nombre">Nombre completo:</label>
-            <input type="text" name="nombre" required>
+    <main>
+        <section id="maintenance">
+            <h2>Mantenimiento Preventivo</h2>
+            <div class="group">
+                <div class="maintenance-p">
+                    <h3>PCs</h3>
+                    <img src="./IMAGES/ppc.jpg" alt="PC Gamer">
+                    <p>El mantenimiento preventivo en una CPU busca evitar fallas...</p>
+                    <p class="price">S/ 20,00</p>
+                    <a href="config/redirigir_servicio.php" style="padding: 10px; background-color: #25D366; color: white; text-decoration: none;">Solicitar Servicio</a>
+                </div>
+                <div class="maintenance-p">
+                    <h3>Laptops</h3>
+                    <img src="./IMAGES/plap.jpg" alt="Laptop">
+                    <p>El mantenimiento preventivo se realiza de manera periódica...</p>
+                    <p class="price">S/ 25,00</p>
+                    <a href="config/redirigir_servicio.php" style="padding: 10px; background-color: #25D366; color: white; text-decoration: none;">Solicitar Servicio</a>
+                </div>
+                <div class="maintenance-p">
+                    <h3>Impresoras</h3>
+                    <img src="./IMAGES/pimp.jpg" alt="Impresora">
+                    <p>El mantenimiento preventivo se lleva a cabo regularmente...</p>
+                    <p class="price">S/ 35,00</p>
+                    <a href="config/redirigir_servicio.php" style="padding: 10px; background-color: #25D366; color: white; text-decoration: none;">Solicitar Servicio</a>
+                </div>
+            </div>
+            
+            <h2>Mantenimiento Correctivo</h2>
+            <div class="group">
+                <div class="maintenance-c">
+                    <h3>PCs</h3>
+                    <img src="./IMAGES/cpc.jpg" alt="PC Gamer">
+                    <p>El mantenimiento correctivo se realiza cuando la CPU presenta una falla...</p>
+                    <p class="price">S/ 40,00</p>
+                    <a href="config/redirigir_servicio.php" style="padding: 10px; background-color: #25D366; color: white; text-decoration: none;">Solicitar Servicio</a>
+                </div>
+                <div class="maintenance-c">
+                    <h3>Laptops</h3>
+                    <img src="./IMAGES/clap.jpg" alt="Laptop">
+                    <p>El mantenimiento correctivo se aplica cuando ya se ha producido un fallo...</p>
+                    <p class="price">S/ 50,00</p>
+                    <a href="config/redirigir_servicio.php" style="padding: 10px; background-color: #25D366; color: white; text-decoration: none;">Solicitar Servicio</a>
+                </div>
+                <div class="maintenance-c">
+                    <h3>Impresoras</h3>
+                    <img src="./IMAGES/cimp.jpg" alt="Impresora">
+                    <p>El mantenimiento correctivo se realiza cuando la impresora presenta fallas...</p>
+                    <p class="price">S/ 60,00</p>
+                    <a href="config/redirigir_servicio.php" style="padding: 10px; background-color: #25D366; color: white; text-decoration: none;">Solicitar Servicio</a>
+                </div>
+            </div>
 
-            <!-- Campo para el correo electrónico -->
-            <label for="email">Correo electrónico:</label>
-            <input type="email" name="email" required>
-
-            <!-- Campo para indicar el producto a comprar -->
-            <label for="producto">Producto:</label>
-            <input type="text" name="producto" required>
-
-            <!-- Campo para ingresar el precio en USD -->
-            <label for="precio">Precio (USD):</label>
-            <input type="number" name="precio" step="0.01" required>
-
-            <!-- Campo oculto para marcar si el pago fue aprobado -->
-            <input type="hidden" name="pago_completado" id="pago_completado" value="0">
-
-            <!-- Contenedor donde se renderizan los botones de PayPal -->
-            <div id="paypal-button-container"></div>
-        </form>
-    </div>
-
-    <!-- Script para inicializar y configurar el botón de PayPal -->
-    <script>
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                // Obtener el precio ingresado por el usuario (valor por defecto 1.00 si está vacío)
-                const price = document.querySelector('input[name="precio"]').value || '1.00';
-                // Crear orden con el monto especificado
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: { value: price }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                // Cuando el pago es aprobado, capturar los detalles
-                return actions.order.capture().then(function(details) {
-                    // Mostrar alerta a usuario confirmando el pago
-                    alert('Pago completado por: ' + details.payer.name.given_name);
-                    // Marcar el campo oculto para indicar que el pago fue completado
-                    document.getElementById('pago_completado').value = "1";
-                    // Enviar el formulario para procesarlo en el servidor
-                    document.getElementById('pago-formulario').submit();
-                });
-            }
-        }).render('#paypal-button-container'); // Renderizar el botón en este contenedor
-    </script>
-
+            <h2>Mantenimiento Predictivo</h2>
+            <div class="group">
+                <div class="maintenance-pd">
+                    <h3>PCs</h3>
+                    <img src="./IMAGES/prpc.jpg" alt="PC Gamer">
+                    <p>El mantenimiento predictivo en una CPU de escritorio se basa en el monitoreo...</p>
+                    <p class="price">S/ 50,00</p>
+                    <a href="config/redirigir_servicio.php" style="padding: 10px; background-color: #25D366; color: white; text-decoration: none;">Solicitar Servicio</a>
+                </div>
+                <div class="maintenance-pd">
+                    <h3>Laptops</h3>
+                    <img src="./IMAGES/prlap.jpg" alt="Laptop">
+                    <p>El mantenimiento predictivo en laptops se basa en el uso de herramientas de monitoreo...</p>
+                    <p class="price">S/ 60,00</p>
+                    <a href="config/redirigir_servicio.php" style="padding: 10px; background-color: #25D366; color: white; text-decoration: none;">Solicitar Servicio</a>
+                </div>
+                <div class="maintenance-pd">
+                    <h3>Impresoras</h3>
+                    <img src="./IMAGES/primp.jpg" alt="Impresora">
+                    <p>El mantenimiento predictivo en impresoras se basa en el análisis de datos como...</p>
+                    <p class="price">S/ 70,00</p>
+                    <a href="config/redirigir_servicio.php" style="padding: 10px; background-color: #25D366; color: white; text-decoration: none;">Solicitar Servicio</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Tienda INFOTEC | Todos los derechos reservados</p>
+    </footer>
 </body>
 </html>

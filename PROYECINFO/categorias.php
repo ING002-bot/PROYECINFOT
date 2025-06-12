@@ -1,23 +1,24 @@
 <?php
 require 'config/conexion.php';
 
-// Agregar nueva categoría
+// Insertar nueva categoría
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nombre_categoria'])) {
     $nombre_categoria = trim($_POST['nombre_categoria']);
 
     if (!empty($nombre_categoria)) {
         try {
-            $sql = "INSERT INTO categorias (nombre_categoria) VALUES (:nombre_categoria)";
+            // Ajuste aquí: la columna se llama "nombre" según tu base de datos
+            $sql = "INSERT INTO categorias (nombre) VALUES (:nombre_categoria)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':nombre_categoria', $nombre_categoria);
             $stmt->execute();
-            header("Location: categorias.php");
-            exit();
+            // No redireccionamos para mostrar en la misma página
+            $mensaje = "✅ Categoría agregada correctamente.";
         } catch (PDOException $e) {
-            die("❌ Error al insertar categoría: " . $e->getMessage());
+            $error = "❌ Error al insertar categoría: " . $e->getMessage();
         }
     } else {
-        die("⚠ El nombre de la categoría no puede estar vacío.");
+        $error = "⚠ El nombre de la categoría no puede estar vacío.";
     }
 }
 
@@ -38,7 +39,8 @@ if (isset($_GET['eliminar'])) {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id_categoria', $id_categoria);
         $stmt->execute();
-        header("Location: categorias.php");
+        // Refrescar la lista sin redireccionar
+        header("Location: " . strtok($_SERVER["REQUEST_URI"], '?'));
         exit();
     } catch (PDOException $e) {
         die("❌ Error al eliminar categoría: " . $e->getMessage());
@@ -56,6 +58,13 @@ if (isset($_GET['eliminar'])) {
 <body>
     <div class="container">
         <h2>Categorías</h2>
+
+        <?php if (!empty($mensaje)): ?>
+            <p style="color:green;"><?php echo $mensaje; ?></p>
+        <?php endif; ?>
+        <?php if (!empty($error)): ?>
+            <p style="color:red;"><?php echo $error; ?></p>
+        <?php endif; ?>
 
         <form method="POST" class="form-agregar">
             <input type="text" name="nombre_categoria" placeholder="Nombre de la categoría" required>
@@ -75,7 +84,7 @@ if (isset($_GET['eliminar'])) {
                     <?php foreach ($categorias as $cat): ?>
                         <tr>
                             <td><?php echo $cat['id_categoria']; ?></td>
-                            <td><?php echo htmlspecialchars($cat['nombre_categoria']); ?></td>
+                            <td><?php echo htmlspecialchars($cat['nombre']); ?></td>
                             <td>
                                 <a href="?eliminar=<?php echo $cat['id_categoria']; ?>" onclick="return confirm('¿Eliminar esta categoría?')">Eliminar</a>
                             </td>

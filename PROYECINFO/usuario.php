@@ -1,12 +1,14 @@
 <?php
 session_start();
 
-// Redireccionar si no ha iniciado sesión
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 'usuario') {
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'usuario') {
+    session_unset();
+    session_destroy();
     header("Location: index.php");
     exit();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -19,7 +21,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 'usuario') {
     <header>
         <h1>Bienvenido - INFOTEC</h1>
         <nav>
-            <a href="nosotros.php">Nosotros</a>
+            <a href="nosotros_u.php">Nosotros</a>
             <a href="cerrarsesion.php">Cerrar Sesión</a>
         </nav>
     </header>
@@ -33,7 +35,12 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 'usuario') {
             <div class="card">
                 <h3>Ver Productos</h3>
                 <p>Revisa los productos disponibles para venta.</p>
-                <a href="./venta.php">Ver más</a>
+                <a href="./venta_u.php">Ver más</a>
+            </div>
+            <div class="card">
+                <h3>Ver Servicios Tecnicos</h3>
+                <p>Revisa los Servicios Tecnicos.</p>
+                <a href="./servicio_u.php">Ver más</a>
             </div>
             <div class="card">
                 <h3>Solicitar Soporte</h3>

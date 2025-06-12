@@ -18,8 +18,6 @@ $usuario_logueado = isset($_SESSION['correo']);
             <ul>
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="servicio.php">Servicio Tecnico</a></li>
-                <li><a href="pago.php">Pago</a></li>
-
             </ul>
         </nav>
     </header>

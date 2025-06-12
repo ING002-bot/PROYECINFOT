@@ -9,7 +9,7 @@
 <body>
 
     <div class="form-wrapper">
-        <form action="" method="POST" id="pago-formulario">
+        <form action="procesar_pago.php" method="POST" id="pago-formulario">
             <label for="nombre">Nombre completo:</label>
             <input type="text" name="nombre" required>
 
@@ -21,6 +21,9 @@
 
             <label for="precio">Precio (USD):</label>
             <input type="number" name="precio" step="0.01" required>
+
+            <!-- Campo oculto para detectar si el pago fue aprobado -->
+            <input type="hidden" name="pago_completado" id="pago_completado" value="0">
 
             <div id="paypal-button-container"></div>
         </form>
@@ -41,6 +44,8 @@
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
                     alert('Pago completado por: ' + details.payer.name.given_name);
+                    document.getElementById('pago_completado').value = "1";
+                    document.getElementById('pago-formulario').submit();
                 });
             }
         }).render('#paypal-button-container');

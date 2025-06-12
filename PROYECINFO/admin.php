@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
+    session_unset();
+    session_destroy();
+    header("Location: index.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,114 +23,106 @@
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
-    <!-- Barra de navegación superior -->
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand ps-3" href="dashboard.html">INFOTEC</a>
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#">
-            <i class="fas fa-bars"></i>
-        </button>
-        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-user fa-fw"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item"  href="cerrarsesion.php">Cerrar Sesión</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand ps-3" href="admin.php">INFOTEC</a>
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"><i class="fas fa-user fa-fw"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="cerrarsesion.php">Cerrar Sesión</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading">Menú Principal</div>
+                    <a class="nav-link" href="admin.php?page=dashboard">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Panel de Control
+                    </a>
 
-    <!-- Contenedor general -->
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Menú Principal</div>
-                        <a class="nav-link" href="dashboard.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Panel de Control
-                        </a>
+                    <div class="sb-sidenav-menu-heading">Gestión</div>
+                    <a class="nav-link" href="admin.php?page=usuarios">
+                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                        Usuarios Registrados
+                    </a>
+                    <a class="nav-link" href="admin.php?page=productos">
+                        <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
+                        Productos
+                    </a>
+                    <a class="nav-link" href="admin.php?page=categorias">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
+                        Categorías
+                    </a>
+                    <a class="nav-link" href="admin.php?page=imagenes">
+                        <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
+                        Imágenes de Productos
+                    </a>
+                    <a class="nav-link" href="admin.php?page=compras">
+                        <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+                        Compras
+                    </a>
+                    <a class="nav-link" href="admin.php?page=boletas">
+                        <div class="sb-nav-link-icon"><i class="fas fa-file-invoice"></i></div>
+                        Boletas Electrónicas
+                    </a>
 
-                        <div class="sb-sidenav-menu-heading">Gestión</div>
-                        <a class="nav-link" href="usuarios.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                            Usuarios Registrados
-                        </a>
-                        <a class="nav-link" href="productos.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
-                            Productos
-                        </a>
-                        <a class="nav-link" href="categorias.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
-                            Categorías
-                        </a>
-                        <a class="nav-link" href="imagenes.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
-                            Imágenes de Productos
-                        </a>
-                        <a class="nav-link" href="compras.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
-                            Compras
-                        </a>
-                        <a class="nav-link" href="boletas.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-file-invoice"></i></div>
-                            Boletas Electrónicas
-                        </a>
-
-                        <div class="sb-sidenav-menu-heading">Interacción</div>
-                        <a class="nav-link" href="comentarios.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
-                            Comentarios
-                        </a>
-                        <a class="nav-link" href="soporte.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-headset"></i></div>
-                            Tickets de Soporte
-                        </a>
-                        <a class="nav-link" href="mensajes.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-envelope"></i></div>
-                            Mensajes de Soporte
-                        </a>
-
+                    <div class="sb-sidenav-menu-heading">Interacción</div>
+                    <a class="nav-link" href="admin.php?page=comentarios">
+                        <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
+                        Comentarios
+                    </a>
+                    <a class="nav-link" href="admin.php?page=soporte">
+                        <div class="sb-nav-link-icon"><i class="fas fa-headset"></i></div>
+                        Tickets de Soporte
+                    </a>
+                    <a class="nav-link" href="admin.php?page=mensajes">
+                        <div class="sb-nav-link-icon"><i class="fas fa-envelope"></i></div>
+                        Mensajes de Soporte
+                    </a>
+                </div>
+            </div>
+            <div class="sb-sidenav-footer">
+                <div class="small">Conectado como:</div>
+                INFOTEC ADMIN
+            </div>
+        </nav>
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <?php
+                    $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
+                    $path = 'admin_pages/' . $page . '.php';
+                    if (file_exists($path)) {
+                        include $path;
+                    } else {
+                        echo "<h2>Página no encontrada</h2>";
+                    }
+                ?>
+            </div>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Derechos reservados &copy; INFOTEC 2025</div>
+                    <div>
+                        <a href="politicas.php">Política de Privacidad</a>
+                        &middot;
+                        <a href="terminosycondi.php">Términos y Condiciones</a>
                     </div>
                 </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Conectado como:</div>
-                    INFOTEC ADMIN
-                </div>
-            </nav>
-        </div>
-
-        <!-- Contenido principal -->
-        <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">Panel de Control</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Bienvenido, administrador de INFOTEC</li>
-                    </ol>
-                    <p>Aquí puedes administrar todo el sistema INFOTEC: productos, usuarios, compras, soporte técnico y más.</p>
-                </div>
-            </main>
-
-            <!-- Pie de página -->
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Derechos reservados &copy; INFOTEC 2025</div>
-                        <div>
-                            <a href="./politicas.php">Política de Privacidad</a>
-                            &middot;
-                            <a href="./terminosycondi.php">Términos y Condiciones</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/panel.js"></script>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="js/panel.js"></script>
 </body>
 </html>

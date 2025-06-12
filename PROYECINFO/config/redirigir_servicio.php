@@ -9,5 +9,5 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'usuario') {
 }
 
 // Si el usuario está logueado correctamente como 'usuario', lo mandamos a pagar
-header("Location: ../pago.php");
+header("Location: ../solicitar_soporte.php");
 exit();

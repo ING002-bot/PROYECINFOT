@@ -11,17 +11,18 @@
     
     <style>
         #map {
-            height: 400px;
-            width: 100%;
-            margin-top: 20px;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-        }
+        height: 280px;              /* Altura más baja para que no invada el footer */
+        width: 95%;                 /* Ancho reducido para que no sobresalga lateralmente */
+        margin: 20px auto 10px auto;/* Margen inferior reducido */
+        border-radius: 10px;
+        border: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Estética ligera */
+    }
     </style>
 </head>
 <body>
     <header>
-        <h1>Servicio Técnico</h1>
+        <h1>INFOTEC</h1>
         <nav>
             <ul>
                 <li><a href="usuario.php">Inicio</a></li>

@@ -1,32 +1,30 @@
 <?php
-session_start(); // Iniciar o reanudar la sesión para usar $_SESSION :contentReference[oaicite:1]{index=1}
+session_start();
+include 'config/conexion.php';
 
-include 'config/conexion.php'; // Conectar a la base de datos usando PDO
-
-// Verificar que el usuario está autenticado y tiene rol de 'usuario'
+// Verifica si el usuario ha iniciado sesión y es del rol 'usuario'
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'usuario') {
-    // Si no cumple, redirigir al index para evitar acceso no autorizado
     header("Location: index.php");
     exit();
 }
 
-// Procesamiento del formulario cuando se envía por POST
+// Procesar el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id_usuario = $_SESSION['id'];              // Obtenemos el ID del usuario desde la sesión
-    $categoria = $_POST['categoria'];           // Leemos la categoría del formulario
-    $descripcion = $_POST['descripcion'];       // Leemos la descripción del ticket
+    $id_usuario = $_SESSION['id'];               // ID del usuario desde sesión
+    $asunto = $_POST['asunto'];                  // Asunto del ticket
+    $mensaje = $_POST['mensaje'];                // Mensaje detallado
+    $estado = 'abierto';                         // Estado por defecto
 
-    // Preparar la inserción de un nuevo ticket de soporte
-    $sql = "INSERT INTO tickets_soporte (id_usuario, categoria, descripcion) VALUES (?, ?, ?)";
-    $stmt = $pdo->prepare($sql);
-
-    // Ejecutar la sentencia y verificar éxito o error
-    if ($stmt->execute([$id_usuario, $categoria, $descripcion])) {
-        // Si se insertó bien, notificar con alerta y redirigir a usuario.php
-        echo "<script>alert('¡Ticket de soporte enviado exitosamente!'); window.location.href='usuario.php';</script>";
-    } else {
-        // Si hubo error, mostrar alerta y permitir regresar atrás
-        echo "<script>alert('Error al enviar el ticket'); window.history.back();</script>";
+    try {
+        $sql = "INSERT INTO tickets_soporte (id_usuario, asunto, mensaje, estado) VALUES (?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        if ($stmt->execute([$id_usuario, $asunto, $mensaje, $estado])) {
+            echo "<script>alert('¡Ticket enviado exitosamente!'); window.location.href='usuario.php';</script>";
+        } else {
+            echo "<script>alert('Error al enviar el ticket.'); window.history.back();</script>";
+        }
+    } catch (PDOException $e) {
+        echo "<script>alert('Error en la base de datos: " . $e->getMessage() . "'); window.history.back();</script>";
     }
 }
 ?>
@@ -37,26 +35,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Solicitar Soporte Técnico</title>
     <link rel="stylesheet" href="CSS/solicitar_soporte.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-wrapper {
+            width: 400px;
+            margin: 60px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #3a2edb;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #25D366;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1ca64c;
+        }
+    </style>
 </head>
 <body>
     <div class="form-wrapper">
-        <h2 style="margin-bottom: 20px; text-align: center;">Solicitar Soporte Técnico</h2>
+        <h2>Solicitar Soporte Técnico</h2>
         <form action="solicitar_soporte.php" method="POST">
-            <!-- Categoría del problema: se usa un select para opciones claras -->
-            <label for="categoria">Categoría:</label>
-            <select name="categoria" id="categoria" required>
-                <option value="">--Selecciona una categoría--</option>
-                <option value="Computadora">Computadora</option>
-                <option value="Laptop">Laptop</option>
-                <option value="Impresora">Impresora</option>
-                <option value="Red/Internet">Red/Internet</option>
-            </select>
+            <!-- Asunto del ticket -->
+            <label for="asunto">Asunto:</label>
+            <input type="text" id="asunto" name="asunto" required placeholder="Ej. Del Problema">
 
-            <!-- Descripción detallada del problema -->
-            <label for="descripcion">Descripción del problema:</label>
-            <textarea name="descripcion" id="descripcion" rows="5" required></textarea>
+            <!-- Mensaje del problema -->
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Describe detalladamente tu problema..."></textarea>
 
-            <!-- Botón para enviar la solicitud -->
+            <!-- Botón de envío -->
             <button type="submit">Enviar Solicitud</button>
         </form>
     </div>

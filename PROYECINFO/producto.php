@@ -61,7 +61,7 @@ if (isset($_GET['eliminar'])) {
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Productos - INFOTEC</title>
-    <link rel="stylesheet" href="CSS/admin.css">
+    <link rel="stylesheet" href="./CSS/productos.css">
     <style>
         .container {
             width: 90%;

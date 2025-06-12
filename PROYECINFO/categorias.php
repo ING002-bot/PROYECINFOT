@@ -53,7 +53,7 @@ if (isset($_GET['eliminar'])) {
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Categorías - INFOTEC</title>
-    <link rel="stylesheet" href="CSS/admin.css">
+    <link rel="stylesheet" href="./CSS/categoria.css">
 </head>
 <body>
     <div class="container">

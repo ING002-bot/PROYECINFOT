@@ -1,144 +1,75 @@
 <?php
 session_start();
-
-// Si no hay sesión de rol definida o no es 'admin', cerramos sesión y redirigimos a index.php
+// Validar sesión de administrador
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    session_unset();        // Eliminar todas las variables de sesión
-    session_destroy();      // Destruir la sesión
-    header("Location: index.php");  // Redirigir al inicio
-    exit();                 // Finalizar ejecución
+    session_unset();
+    session_destroy();
+    header("Location: index.php");
+    exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Panel de control del sistema INFOTEC" />
-    <meta name="author" content="INFOTEC" />
+    <meta charset="UTF-8">
     <title>Panel de Control - INFOTEC</title>
-    <!-- Estilos para la tabla y el panel administrativo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./CSS/panel.css">
+    <!-- Scripts del panel administrativo original -->
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-    <link href="CSS/admin.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-    <!-- Logo y toggle del sidebar -->
-    <a class="navbar-brand ps-3" href="admin.php">INFOTEC</a>
-    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle">
-        <i class="fas fa-bars"></i>
-    </button>
-    <!-- Menú de usuario -->
-    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown">
-                <i class="fas fa-user fa-fw"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="cerrarsesion.php">Cerrar Sesión</a></li>
+    <header class="encabezado">
+        <div class="logo">INFOTEC</div>
+        <div class="usuario">
+            Conectado como: <strong>INFOTEC ADMIN</strong>
+            <a href="cerrarsesion.php" class="cerrar-sesion">Cerrar Sesión</a>
+        </div>
+    </header>
+
+    <div class="contenedor">
+        <aside class="menu-lateral" id="sidenavAccordion">
+            <h3>MENÚ PRINCIPAL</h3>
+            <ul>
+                <li><a href="admin.php">Panel de Control</a></li>
+                <li><a href="usuarios.php?page=usuarios">Usuarios Registrados</a></li>
+                <li><a href="producto.php?page=productos">Productos</a></li>
+                <li><a href="categorias.php?page=categorias">Categorías</a></li>
+                <li><a href="imgproduc.php?page=imagenes">Imágenes de Producto</a></li>
+                <li><a href="compras.php?page=compras">Compras</a></li>
+                <li><a href="boletas.php?page=boletas">Boletas Electrónicas</a></li>
+                <li><a href="comentarios.php?page=comentarios">Comentarios</a></li>
+                <li><a href="tikesoporte.php?page=soporte">Tickets de Soporte</a></li>
+                <li><a href="mensaje.php?page=mensajes">Mensajes de Soporte</a></li>
             </ul>
-        </li>
-    </ul>
-</nav>
-<!-- Layout principal con sidebar -->
-<div id="layoutSidenav">
-    <div id="layoutSidenav_nav">
-        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-            <div class="sb-sidenav-menu">
-                <div class="nav">
-                    <!-- Encabezado Menú Principal -->
-                    <div class="sb-sidenav-menu-heading">Menú Principal</div>
-                    <a class="nav-link" href="admin.php?page=dashboard">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Panel de Control
-                    </a>
-                    <!-- Encabezado Gestión -->
-                    <div class="sb-sidenav-menu-heading">Gestión</div>
-                    <!-- Vínculos a secciones administrativas -->
-                    <a class="nav-link" href="admin.php?page=usuarios">
-                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                        Usuarios Registrados
-                    </a>
-                    <a class="nav-link" href="producto.php?page=productos">
-                        <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
-                        Productos
-                    </a>
-                    <a class="nav-link" href="categorias.php?page=categorias">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
-                        Categorías
-                    </a>
-                    <a class="nav-link" href="admin.php?page=imagenes">
-                        <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
-                        Imágeness de Producto
-                    </a>
-                    <a class="nav-link" href="admin.php?page=compras">
-                        <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
-                        Compras
-                    </a>
-                    <a class="nav-link" href="admin.php?page=boletas">
-                        <div class="sb-nav-link-icon"><i class="fas fa-file-invoice"></i></div>
-                        Boletas Electrónicas
-                    </a>
-                    <!-- Encabezado Interacción -->
-                    <div class="sb-sidenav-menu-heading">Interacción</div>
-                    <a class="nav-link" href="admin.php?page=comentarios">
-                        <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
-                        Comentarios
-                    </a>
-                    <a class="nav-link" href="admin.php?page=soporte">
-                        <div class="sb-nav-link-icon"><i class="fas fa-headset"></i></div>
-                        Tickets de Soporte
-                    </a>
-                    <a class="nav-link" href="admin.php?page=mensajes">
-                        <div class="sb-nav-link-icon"><i class="fas fa-envelope"></i></div>
-                        Mensajes de Soporte
-                    </a>
-                </div>
-            </div>
-            <!-- Pie de menú con información del usuario -->
-            <div class="sb-sidenav-footer">
-                <div class="small">Conectado como:</div>
-                INFOTEC ADMIN
-            </div>
-        </nav>
-    </div>
-    <!-- Contenido principal dinámico -->
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid px-4">
-                <?php
-                    // Obtener el parámetro 'page' y cargar el archivo correspondiente si existe
-                    $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
-                    $path = 'admin_pages/' . $page . '.php';
-                    if (file_exists($path)) {
-                        include $path;
-                    } else {
-                        echo "<h2>Página no encontrada</h2>";
-                    }
-                ?>
-            </div>
+        </aside>
+
+        <main class="contenido">
+            <?php
+            $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
+            $path = 'admin_pages/' . $page . '.php';
+            if (file_exists($path)) {
+                include $path;
+            } else {
+                echo '
+                <div class="pagina-no-encontrada">
+                    <h2>⚠ Página no encontrada</h2>
+                    <p>La sección que estás buscando no existe o fue movida.</p>
+                    <p>Por favor verifica el enlace o consulta al administrador.</p>
+                </div>';
+            }
+            ?>
         </main>
-        <!-- Pie de página -->
-        <footer class="py-4 bg-light mt-auto">
-            <div class="container-fluid px-4">
-                <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Derechos reservados &copy; INFOTEC 2025</div>
-                    <div>
-                        <a href="politicas.php">Política de Privacidad</a>
-                        &middot;
-                        <a href="terminosycondi.php">Términos y Condiciones</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </div>
-</div>
-<!-- Scripts de Bootstrap y funcionalidades del panel -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="js/panel.js"></script>
+
+    <footer class="pie">
+        <p>Derechos reservados © INFOTEC 2025</p>
+        <p><a href="politicas.php">Política de Privacidad</a> · <a href="terminosycondi.php">Términos y Condiciones</a></p>
+    </footer>
+
+    <!-- Scripts de Bootstrap y funcionalidad del panel -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="js/panel.js"></script>
 </body>
 </html>

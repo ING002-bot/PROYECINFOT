@@ -1,0 +1,113 @@
+/* Estructura general */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f6f6f6;
+}
+
+/* Encabezado */
+.encabezado {
+    background-color: #3a2edb;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.usuario {
+    font-size: 14px;
+}
+
+.cerrar-sesion {
+    margin-left: 20px;
+    color: #ff3b6c;
+    text-decoration: none;
+}
+
+/* Contenedor general */
+.contenedor {
+    display: flex;
+}
+
+/* Menú lateral */
+.menu-lateral {
+    width: 230px;
+    background-color: #252525;
+    color: white;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.menu-lateral h3 {
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+.menu-lateral ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-lateral ul li a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.menu-lateral ul li a:hover {
+    background-color: #25D366;
+}
+
+/* Contenido principal */
+.contenido {
+    flex: 1;
+    padding: 30px;
+    background-color: #fff;
+    min-height: 100vh;
+}
+
+/* Página no encontrada */
+.pagina-no-encontrada {
+    text-align: center;
+    padding: 50px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.pagina-no-encontrada h2 {
+    color: #ff3b6c;
+}
+
+.pagina-no-encontrada p {
+    color: #555;
+    margin: 10px 0;
+}
+
+/* Pie de página */
+.pie {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 15px;
+    font-size: 13px;
+    color: #666;
+}
+
+.pie a {
+    text-decoration: none;
+    color: #3a2edb;
+}
+
+.pie a:hover {
+    text-decoration: underline;
+}

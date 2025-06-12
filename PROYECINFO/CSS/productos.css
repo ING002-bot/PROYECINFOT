@@ -1,0 +1,89 @@
+/* admin.css */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #3a2edb;
+    margin-bottom: 20px;
+}
+
+.form-agregar input,
+.form-agregar textarea,
+.form-agregar select,
+.form-agregar button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.form-agregar button {
+    background-color: #25D366;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-agregar button:hover {
+    background-color: #1fa855;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+thead {
+    background-color: #3a2edb;
+    color: white;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f4f4f4;
+}
+
+a.btn-eliminar {
+    color: #ff3b6c;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a.btn-eliminar:hover {
+    text-decoration: underline;
+}
+
+.mensaje-error {
+    background: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
